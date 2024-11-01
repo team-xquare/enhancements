@@ -5,7 +5,7 @@ enhancements는 xquare에서 버그를 개선하거나 새로운 기능을 추�
 1. 'xeps' 폴더에 새로운 파일을 생성합니다.
 2. 파일명은 'xep-0000.md'로 생성합니다.
 3. 파일 내용은 [XEP-0000 Template](xeps/NNNN-xep-template/xep-0000-template.md)를 참고하여 작성합니다.
-4. PR을 생성합니다.
+4. 레포지토리를 Fork한 후 PR을 생성합니다.
 5. PR이 생성되면 해당 제안은 'Pending' 상태로 변경됩니다.
 6. 제안이 승인되면 'Accepted' 상태로 변경됩니다.
 7. 제안자는 구현을 시작하고 구현 내역을 작성합니다.
