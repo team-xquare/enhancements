@@ -88,7 +88,42 @@ Kubernetes의 EC2 사용량이 대폭 증가합니다. 하지만 DocumentDB의 �
 먼저 Percona Operator가 k8s-resource 레포지토리에 존재하는지 확인하고, MongoDB Pod가 정상적으로 생성되었는지 확인합니다.
 
 ## 구현 내역
+Percona Operator를 k8s-resource 레포지토리에 Helm으로 설치 <br>
+Chart.yaml
+```yaml
+apiVersion: v2
+name: percona-operator
+description: Percona Operator
+type: application
+version: 1.0.0
+dependencies:
+   - name: psmdb-db
+     version: 1.17.1
+     repository: https://percona.github.io/percona-helm-charts
+```
+values.yaml
+```yaml
+psmdb-db:
+  tolerations:
+    - effect: "NoSchedule"
+      key: xquare/platform
+      operator: "Equal"
+      value: "true"
+```
+operator는 platform 노드에서 작동하도록 하고, 실제 배포되는 DB는 database 노드에 올라가도록 한다.
 
+실제로 배포되도록 하기 위해서 charts/xquare-application/values.yaml에 다음과 같이 추가하고 차트 버전을 올린다.
+```yaml
+      - name: percona-operator
+        namespace: percona
+        source:
+          path: apps/percona-operator
+          repoURL: https://github.com/team-xquare/k8s-resource.git
+        syncPolicy:
+          automated:
+            prune: false
+            selfHeal: true
+```
 
 ## 단점
 
