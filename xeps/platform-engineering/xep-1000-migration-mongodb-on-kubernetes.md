@@ -88,6 +88,10 @@ Kubernetes의 EC2 사용량이 대폭 증가합니다. 하지만 DocumentDB의 �
 먼저 Percona Operator가 k8s-resource 레포지토리에 존재하는지 확인하고, MongoDB Pod가 정상적으로 생성되었는지 확인합니다.
 
 ## 구현 내역
+CRD를 수동으로 설치
+```shell
+kubectl apply --server-side -f https://raw.githubusercontent.com/percona/percona-server-mongodb-operator/main/deploy/bundle.yaml
+```
 Percona Operator를 k8s-resource 레포지토리에 Helm으로 설치 <br>
 Chart.yaml
 ```yaml
